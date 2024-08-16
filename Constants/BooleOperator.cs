@@ -1,6 +1,6 @@
 ﻿namespace BooleanSimplifier.Constants
 {
-    public enum Operator
+    internal enum Operator
     {
         OR,
         AND
