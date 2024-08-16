@@ -1,6 +1,6 @@
 ﻿namespace BooleanSimplifier.Constants
 {
-    internal class Constants
+    internal static class CONSTANTS
     {
         public const char LEFT_PARENTESIS = '(';
         public const char RIGHT_PARENTESIS = ')';

@@ -9,11 +9,11 @@ namespace BooleanSimplifier.Src.Models
             switch (op)
             {
                 case Operator.AND:
-                    return Constants.Constants.AND_OPERATOR;
+                    return CONSTANTS.AND_OPERATOR;
                 case Operator.OR:
-                    return Constants.Constants.OR_OPERATOR;
+                    return CONSTANTS.OR_OPERATOR;
                 default:
-                    return Constants.Constants.AND_OPERATOR;
+                    return CONSTANTS.AND_OPERATOR;
             }
         }
     }

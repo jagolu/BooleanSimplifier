@@ -1,4 +1,6 @@
-﻿namespace BooleanSimplifier.Models
+﻿using BooleanSimplifier.Constants;
+
+namespace BooleanSimplifier.Models
 {
     internal class BooleConjunction
     {
@@ -13,7 +15,7 @@
                 elements.Select((value, index) => new { value, index }).ToList()
                         .ForEach(element =>
                         {
-                            string starting = element.index > 0 ? Constants.Constants.AND_OPERATOR.ToString() : string.Empty;
+                            string starting = element.index > 0 ? CONSTANTS.AND_OPERATOR.ToString() : string.Empty;
                             ret += starting + element.value.conjunctionName;
                         });
                 return ret;

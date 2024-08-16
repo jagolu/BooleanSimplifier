@@ -1,4 +1,5 @@
-﻿using BooleanSimplifier.Models;
+﻿using BooleanSimplifier.Constants;
+using BooleanSimplifier.Models;
 using System.Runtime.CompilerServices;
 
 namespace BooleanSimplifier.Src.Models
@@ -25,7 +26,7 @@ namespace BooleanSimplifier.Src.Models
             query.sumarize().ForEach(elQuery =>
             {
                 BooleConjunction singleElement = new BooleConjunction();
-                elQuery.Split(Constants.Constants.AND_OPERATOR).ToList()
+                elQuery.Split(CONSTANTS.AND_OPERATOR).ToList()
                     .Where(el => el.Length > 0).ToList()
                     .ForEach(singleEl =>
                     {

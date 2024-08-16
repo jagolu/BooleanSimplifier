@@ -1,4 +1,5 @@
-﻿using BooleanSimplifier.Src;
+﻿using BooleanSimplifier.Constants;
+using BooleanSimplifier.Src.Models;
 
 namespace BooleanSimplifier.Models
 {
@@ -8,7 +9,7 @@ namespace BooleanSimplifier.Models
 
         public BooleTable(List<string> vars)
         {
-            string negative = Constants.Constants.NEGATION_OPERATOR;
+            string negative = CONSTANTS.NEGATION_OPERATOR;
             List<bool> vals = new List<bool>();
             List<int> resetAt = new List<int>();
             List<int> switchAt = new List<int>();

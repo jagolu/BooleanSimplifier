@@ -1,4 +1,6 @@
-﻿namespace BooleanSimplifier.Models
+﻿using BooleanSimplifier.Constants;
+
+namespace BooleanSimplifier.Models
 {
     internal class BooleanConjunctionElement
     {
@@ -6,7 +8,7 @@
         public Boolean val { get; } = true;
         public BooleanConjunctionElement(string myVar)
         {
-            var negOp = Constants.Constants.NEGATION_OPERATOR;
+            var negOp = CONSTANTS.NEGATION_OPERATOR;
             if (myVar == null) throw new ArgumentNullException(nameof(myVar));
             if (myVar.Length == 0) throw new ArgumentException("Length 0 at " + myVar);
             if (myVar.Contains(negOp) && myVar.IndexOf(negOp) != 0)
@@ -18,7 +20,7 @@
 
         public string conjunctionName { 
             get {
-                string negativeOperator = val ? string.Empty : Constants.Constants.NEGATION_CONJUNTION_OPERATOR;
+                string negativeOperator = val ? string.Empty : CONSTANTS.NEGATION_CONJUNTION_OPERATOR;
                 return $"{negativeOperator}{name}"; 
             } 
         }
