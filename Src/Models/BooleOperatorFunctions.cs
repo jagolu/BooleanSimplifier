@@ -16,5 +16,10 @@ namespace BooleanSimplifier.Src.Models
                     return CONSTANTS.AND_OPERATOR;
             }
         }
+
+        public static bool IsEqualToBooleOp(this Operator op1, char op2)
+        {
+            return op1.getBooleOp() == op2;
+        }
     }
 }

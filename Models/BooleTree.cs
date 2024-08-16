@@ -21,24 +21,19 @@ namespace BooleanSimplifier.Models
             parts.ForEach(part =>
             {
                 string formatted = removeStartingEndingParameters(part);
-                bool hasOutterOR = hasOutterOperator(formatted, Operator.OR);
+                Operator childOperator = hasOutterOperator(formatted, Operator.OR) ? Operator.OR : Operator.AND;
                 bool hasAnyOr = hasSomeOperator(formatted, Operator.OR);
                 bool hasAnyOp = hasAnyOperator(formatted);
 
                 if (!hasAnyOp) items.Add(part);
-                else if (hasAnyOr)
+                else if (hasAnyOr || op.IsEqualToBooleOp(CONSTANTS.AND_OPERATOR))
                 {
-                    BooleTree child = new BooleTree(formatted, hasOutterOR ? Operator.OR : Operator.AND);
+                    BooleTree child = new BooleTree(formatted, childOperator);
                     children.Add(child);
                 }
-                else if (op.getBooleOp() != CONSTANTS.AND_OPERATOR)
+                else if (!op.IsEqualToBooleOp(CONSTANTS.AND_OPERATOR))
                 {
                     items.Add(part);
-                }
-                else
-                {
-                    BooleTree child = new BooleTree(formatted, hasOutterOR ? Operator.OR : Operator.AND);
-                    children.Add(child);
                 }
             });
         }
@@ -70,7 +65,7 @@ namespace BooleanSimplifier.Models
                 (children == null || children.Count == 0) && 
                 (items == null || items.Count == 0)
             ) return result;
-            if (Operator.getBooleOp() == CONSTANTS.OR_OPERATOR)
+            if (Operator.IsEqualToBooleOp(CONSTANTS.OR_OPERATOR))
             {
                 if (children != null)
                 {
@@ -81,7 +76,7 @@ namespace BooleanSimplifier.Models
 
                 items.ForEach(i => result.Add(i));
             }
-            else if (Operator.getBooleOp() == CONSTANTS.AND_OPERATOR)
+            else if (Operator.IsEqualToBooleOp(CONSTANTS.AND_OPERATOR))
             {
                 string appended = string.Empty;
                 if (items != null) 
@@ -126,7 +121,7 @@ namespace BooleanSimplifier.Models
 
             string conjunto = string.Empty;
             int countParentesis = 0;
-            String nextFunction = String.Empty;
+            string nextFunction = string.Empty;
 
             foreach (char c in str)
             {
@@ -140,7 +135,7 @@ namespace BooleanSimplifier.Models
                     conjunto += c;
                     countParentesis--;
                 }
-                else if (c == op.getBooleOp() && countParentesis == 0)
+                else if (op.IsEqualToBooleOp(c) && countParentesis == 0)
                 {
                     nextFunction = c.ToString();
                     break;
@@ -183,7 +178,7 @@ namespace BooleanSimplifier.Models
                 {
                     countParentesis--;
                 }
-                else if (c == op.getBooleOp() && countParentesis == 0)
+                else if (op.IsEqualToBooleOp(c) && countParentesis == 0)
                 {
                     ret = true;
                     break;
