@@ -27,7 +27,7 @@ namespace BooleanSimplifier.Models
                     BooleTree child = new BooleTree(formatted, hasOutterOR ? Operator.OR : Operator.AND);
                     children.Add(child);
                 }
-                else if (op.getOp() != Constants.Constants.AND_OPERATOR)
+                else if (op.getBooleOp() != Constants.Constants.AND_OPERATOR)
                 {
                     items.Add(part);
                 }
@@ -47,7 +47,7 @@ namespace BooleanSimplifier.Models
             List<string> result = new();
 
             if ((children == null || children.Count == 0) && items == null || items.Count == 0) return result;
-            if (Operator.getOp() == Constants.Constants.OR_OPERATOR)
+            if (Operator.getBooleOp() == Constants.Constants.OR_OPERATOR)
             {
                 if (children != null)
                 {
@@ -59,7 +59,7 @@ namespace BooleanSimplifier.Models
 
                 items.ForEach(i => result.Add(i));
             }
-            else if (Operator.getOp() == Constants.Constants.AND_OPERATOR)
+            else if (Operator.getBooleOp() == Constants.Constants.AND_OPERATOR)
             {
                 string appended = string.Empty;
                 if (items != null) items.ForEach(x => appended += Constants.Constants.AND_OPERATOR + x);

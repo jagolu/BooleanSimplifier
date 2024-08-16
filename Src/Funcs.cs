@@ -33,18 +33,7 @@ namespace BooleanSimplifier.Src
             else return new() { part.Substring(0, lastIndex - 1), part.Substring(lastIndex - 1, lastIndex) };
         }
 
-        public static char getOp(this Operator op)
-        {
-            switch (op)
-            {
-                case Operator.AND:
-                    return Constants.Constants.AND_OPERATOR;
-                case Operator.OR:
-                    return Constants.Constants.OR_OPERATOR;
-                default:
-                    return Constants.Constants.AND_OPERATOR;
-            }
-        }
+
 
         public static bool hasOutterOperator(this string str, Operator op)
         {
@@ -68,7 +57,7 @@ namespace BooleanSimplifier.Src
                 {
                     countParentesis--;
                 }
-                else if (c == op.getOp() && countParentesis == 0)
+                else if (c == op.getBooleOp() && countParentesis == 0)
                 {
                     ret = true;
                     break;
@@ -81,7 +70,7 @@ namespace BooleanSimplifier.Src
         public static bool hasSomeOperator(this string str, Operator op)
         {
             if (str == null || str == String.Empty) return false;
-            return str.Contains(op.getOp());
+            return str.Contains(op.getBooleOp());
         }
 
         public static bool hasAnyOperator(this string str)
@@ -111,7 +100,7 @@ namespace BooleanSimplifier.Src
                     conjunto += c;
                     countParentesis--;
                 }
-                else if (c == op.getOp() && countParentesis == 0)
+                else if (c == op.getBooleOp() && countParentesis == 0)
                 {
                     nextFunction = c.ToString();
                     break;
