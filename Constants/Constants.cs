@@ -7,5 +7,6 @@
         public const char OR_OPERATOR = '+';
         public const char AND_OPERATOR = '*';
         public const char NEGATION_OPERATOR = '!';
+        public const char NEGATION_CONJUNTION_OPERATOR = '¬';
     }
 }
