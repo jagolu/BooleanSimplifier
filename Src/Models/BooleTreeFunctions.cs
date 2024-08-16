@@ -1,7 +1,7 @@
 ﻿using BooleanSimplifier.Models;
 using System.Runtime.CompilerServices;
 
-namespace BooleanSimplifier.Src
+namespace BooleanSimplifier.Src.Models
 {
     internal static class BooleTreeFunctions
     {

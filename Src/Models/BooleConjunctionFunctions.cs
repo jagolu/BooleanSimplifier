@@ -1,6 +1,6 @@
 ﻿using BooleanSimplifier.Models;
 
-namespace BooleanSimplifier.Src
+namespace BooleanSimplifier.Src.Models
 {
     internal static class BooleConjunctionFunctions
     {

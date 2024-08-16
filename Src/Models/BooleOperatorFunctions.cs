@@ -1,6 +1,6 @@
 ﻿using BooleanSimplifier.Constants;
 
-namespace BooleanSimplifier.Src
+namespace BooleanSimplifier.Src.Models
 {
     internal static class BooleOperatorFunctions
     {
