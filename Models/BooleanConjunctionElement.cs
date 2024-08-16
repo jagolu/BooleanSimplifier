@@ -12,14 +12,14 @@
             if (myVar.Contains(negOp) && myVar.IndexOf(negOp) != 0)
                 throw new ArgumentException($"${negOp} in incorrect position");
 
-            val = !myVar.Contains(negOp);
-            name = !myVar.Contains(negOp) ? myVar.Remove(0, 1) : myVar;
+            this.val = !myVar.Contains(negOp);
+            name = myVar.Contains(negOp) ? myVar.Remove(0, 1) : myVar;
         }
 
         public string conjunctionName { 
             get {
-                string negativeOperator = val ? string.Empty : Constants.Constants.NEGATION_CONJUNTION_OPERATOR.ToString();
-                return $"${negativeOperator}${name}"; 
+                string negativeOperator = val ? string.Empty : Constants.Constants.NEGATION_CONJUNTION_OPERATOR;
+                return $"{negativeOperator}{name}"; 
             } 
         }
     }

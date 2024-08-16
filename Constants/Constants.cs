@@ -6,7 +6,7 @@
         public const char RIGHT_PARENTESIS = ')';
         public const char OR_OPERATOR = '+';
         public const char AND_OPERATOR = '*';
-        public const char NEGATION_OPERATOR = '!';
-        public const char NEGATION_CONJUNTION_OPERATOR = '¬';
+        public const string NEGATION_OPERATOR = "!";
+        public const string NEGATION_CONJUNTION_OPERATOR = "¬";
     }
 }
