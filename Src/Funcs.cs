@@ -120,48 +120,5 @@ namespace BooleanSimplifier.Src
 
             return getGroupsOperator(str, op, retValue);
         }
-
-        public static List<List<BooleanConjunctionElement>> getSummarizedList(this BooleTree query)
-        {
-            List<List<BooleanConjunctionElement>> list = new List<List<BooleanConjunctionElement>>();
-            query.sumarize().ForEach(elQuery =>
-            {
-                List<BooleanConjunctionElement> singleElement = new List<BooleanConjunctionElement>();
-                elQuery.Split("*").ToList().Where(el => el.Length > 0).ToList().ForEach(singleEl =>
-                {
-                    singleElement.Add(new(singleEl.ToString()));
-                });
-                list.Add(singleElement);
-            });
-            return list;
-        }
-
-        public static List<string> getDifferentVars(this BooleTree query)
-        {
-            List<string> vars = new List<string>();
-            query.getSummarizedList().ForEach(elQuery =>
-            {
-                elQuery.ForEach(el =>
-                {
-                    vars.Add(el.name);
-                });
-            });
-
-            return vars.Distinct().ToList();
-        }
-
-        public static bool hasTrueValue(List<BooleanConjunctionElement> cellInfo, List<BooleanConjunctionElement> val)
-        {
-            bool hasTrue = true;
-            val.ForEach(subVal =>
-            {
-                hasTrue = hasTrue && cellInfo.Any(c =>
-                {
-                    return c.name == subVal.name && c.val == subVal.val;
-                });
-            });
-
-            return hasTrue;
-        }
     }
 }

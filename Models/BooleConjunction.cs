@@ -2,7 +2,22 @@
 {
     internal class BooleConjunction
     {
-        public List<BooleanConjunctionElement> conjunction = new List<BooleanConjunctionElement>();
+        public List<BooleanConjunctionElement> elements = new List<BooleanConjunctionElement>();
         public bool value { get; set; } = false;
+
+        public string verbose
+        {
+            get
+            {
+                string ret = string.Empty;
+                elements.Select((value, index) => new { value, index }).ToList()
+                        .ForEach(element =>
+                        {
+                            string starting = element.index > 0 ? Constants.Constants.AND_OPERATOR.ToString() : string.Empty;
+                            ret += starting + element.value.conjunctionName;
+                        });
+                return ret;
+            }
+        }
     }
 }

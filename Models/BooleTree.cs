@@ -38,23 +38,41 @@ namespace BooleanSimplifier.Models
                 }
             });
         }
-        public Operator Operator { get; set; }
-        public List<BooleTree> children { get; set; }
-        public List<string> items { get; set; }
+        private Operator Operator { get; set; }
+        private List<BooleTree> children { get; set; }
+        private List<string> items { get; set; }
+
+        public string verboseFunctionAsSummatory
+        {
+            get
+            {
+                string ret = string.Empty;
+                this.getFunctionAsSummatory().Select((value, index) => new { value, index })
+                    .ToList().ForEach(elQuery =>
+                    {
+                        string starting = elQuery.index > 0 ? $" {Constants.Constants.OR_OPERATOR.ToString()} " : string.Empty;
+                        ret += starting + elQuery.value.verbose;
+                    });
+
+                return ret;
+            }
+        }
 
         public List<string> sumarize()
         {
             List<string> result = new();
 
-            if ((children == null || children.Count == 0) && items == null || items.Count == 0) return result;
+            if (
+                (children == null || children.Count == 0) && 
+                (items == null || items.Count == 0)
+            ) return result;
             if (Operator.getBooleOp() == Constants.Constants.OR_OPERATOR)
             {
                 if (children != null)
                 {
                     children.ForEach(child =>
-                    {
-                        child.sumarize().ForEach(x => result.Add(x));
-                    });
+                        child.sumarize().ForEach(x => result.Add(x))
+                    );
                 }
 
                 items.ForEach(i => result.Add(i));
@@ -62,14 +80,14 @@ namespace BooleanSimplifier.Models
             else if (Operator.getBooleOp() == Constants.Constants.AND_OPERATOR)
             {
                 string appended = string.Empty;
-                if (items != null) items.ForEach(x => appended += Constants.Constants.AND_OPERATOR + x);
+                if (items != null) 
+                    items.ForEach(x => appended += Constants.Constants.AND_OPERATOR + x);
 
                 if (children != null && children.Count > 0)
                 {
-                    foreach (BooleTree c in children)
-                    {
-                        c.sumarize().ForEach(x => result.Add(x + appended));
-                    }
+                    children.ForEach(c => 
+                        c.sumarize().ForEach(x => result.Add(x + appended))
+                    );
                 }
                 else if (children == null || children.Count == 0)
                 {

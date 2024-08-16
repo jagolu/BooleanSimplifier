@@ -4,7 +4,7 @@ namespace BooleanSimplifier.Models
 {
     internal class BooleTable
     {
-        List<BooleConjunction> table = new List<BooleConjunction>();
+        List<BooleConjunction> lines = new List<BooleConjunction>();
 
         public BooleTable(List<string> vars)
         {
@@ -45,33 +45,34 @@ namespace BooleanSimplifier.Models
                     strVars.Add(new((vals[x.index] ? "" : negative) + x.value));
                     actualCounter[x.index]++;
                 });
-                table.Add(new BooleConjunction() { conjunction = strVars });
+                lines.Add(new BooleConjunction() { elements = strVars });
             }
         }
 
-        public void fill(BooleTree info)
+        public void fill(BooleTree boolTree)
         {
-            List<List<BooleanConjunctionElement>> summarizedElements = info.getSummarizedList();
-            table.ForEach(line =>
+            List<BooleConjunction> lines = boolTree.getFunctionAsSummatory();
+            this.lines.ForEach(line =>
             {
-                bool val = summarizedElements.Any(el =>
-                {
-                    return Funcs.hasTrueValue(line.conjunction, el);
-                });
+                bool val = lines.Any(el => line.isEqual(el));
                 line.value = val;
             });
         }
 
         public void show()
         {
-            table.ForEach(line =>
+            if (lines == null || lines.Count == 0) return;
+            string header = string.Empty;
+            lines.First().elements.ForEach(el => header += el.name + " ");
+            Console.WriteLine(header);
+            lines.ForEach(line =>
             {
                 List<string> vals = new List<string>();
-                line.conjunction.ForEach(cinfo =>
+                line.elements.ForEach(cinfo =>
                 {
-                    vals.Add((cinfo.val ? "  " : " ") + cinfo.conjunctionName);
+                    vals.Add((cinfo.val ? "1" : "0") + " ");
                 });
-                string val = "";
+                string val = string.Empty;
                 vals.ForEach(x => val += x);
                 Console.WriteLine(val + "   ---> " + (line.value ? "1" : "0"));
             });
