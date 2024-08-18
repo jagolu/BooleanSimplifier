@@ -97,6 +97,7 @@ namespace BooleanSimplifier.Models
             return result;
         }
 
+        #region private constructor
         private string removeStartingEndingParameters(string str)
         {
             if (str == null || str == String.Empty) return string.Empty;
@@ -111,7 +112,6 @@ namespace BooleanSimplifier.Models
             }
             else return str;
         }
-
 
         private List<string> getGroupsOperator(string str, Operator op, List<string>? retValue = null)
         {
@@ -187,6 +187,6 @@ namespace BooleanSimplifier.Models
 
             return ret;
         }
-
+        #endregion
     }
 }
