@@ -11,7 +11,7 @@ namespace BooleanSimplifier.Models
         public BooleConjunction() { }
         public BooleConjunction(List<BooleanConjunctionElement> els, bool val = false) {
             elements = els;
-            val = false;
+            value = false;
         }
 
         public string verbose
@@ -32,7 +32,7 @@ namespace BooleanSimplifier.Models
         {
             List<string> ret = new List<string>();
             elements.ForEach(el => ret.Add(el.name));
-            return ret.Distinct().ToList();
+            return ret.Distinct().OrderBy(x => x).ToList();
         }
 
         public bool equals(BooleConjunction rhs)

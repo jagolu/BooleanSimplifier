@@ -1,5 +1,4 @@
-﻿using BooleanSimplifier.Constants;
-using BooleanSimplifier.Src;
+﻿using BooleanSimplifier.Src;
 using BooleanSimplifier.Src.Models;
 
 namespace BooleanSimplifier.Models
