@@ -21,8 +21,8 @@ namespace BooleanSimplifier.Models
                 string ret = string.Empty;
                 elements.SelectIndex().ForEach(element =>
                 {
-                    string starting = element.index > 0 ? CONSTANTS.AND_OPERATOR.ToString() : string.Empty;
-                    ret += starting + element.value.conjunctionName;
+                    string starting = element.index > 0 ? CONSTANTS.OUTPUT_AND_OPERATOR : string.Empty;
+                    ret += starting + element.value.verbose;
                 });
                 return ret;
             }

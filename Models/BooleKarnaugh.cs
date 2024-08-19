@@ -3,10 +3,10 @@ using BooleanSimplifier.Src;
 
 namespace BooleanSimplifier.Models
 {
-    public class BooleSimplificator
+    internal class BooleKarnaugh
     {
         private List<BooleConjunction> _booleConjunctions = new List<BooleConjunction>();  
-        public BooleSimplificator(List<string> vars, BooleTable table) {
+        public BooleKarnaugh(List<string> vars, BooleTable table) {
             createConjunctions(vars);
             fillValues(table.lines.Where(l => !l.value).ToList());
             removeInvalid(table);
@@ -19,7 +19,7 @@ namespace BooleanSimplifier.Models
                 string ret = string.Empty;
                 _booleConjunctions.SelectIndex().ForEach(x =>
                 {
-                    string baseStr = x.index > 0 ? CONSTANTS.OR_OPERATOR.ToString() : string.Empty;
+                    string baseStr = x.index > 0 ? CONSTANTS.OUTPUT_OR_OPERATOR : string.Empty;
                     ret += baseStr + x.value.verbose;
                 });
                 return ret;

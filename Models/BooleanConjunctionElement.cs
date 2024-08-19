@@ -18,9 +18,9 @@ namespace BooleanSimplifier.Models
             name = myVar.Contains(negOp) ? myVar.Remove(0, 1) : myVar;
         }
 
-        public string conjunctionName { 
+        public string verbose { 
             get {
-                string negativeOperator = val ? string.Empty : CONSTANTS.NEGATION_CONJUNTION_OPERATOR;
+                string negativeOperator = val ? string.Empty : CONSTANTS.OUTPUT_NEGATION_OPERATOR;
                 return $"{negativeOperator}{name}"; 
             } 
         }

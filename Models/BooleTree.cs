@@ -49,7 +49,7 @@ namespace BooleanSimplifier.Models
                 string ret = string.Empty;
                 this.getFunctionAsSummatory().SelectIndex().ForEach(elQuery =>
                 {
-                    string starting = elQuery.index > 0 ? $" {CONSTANTS.OR_OPERATOR} " : string.Empty;
+                    string starting = elQuery.index > 0 ? $" {CONSTANTS.OUTPUT_OR_OPERATOR} " : string.Empty;
                     ret += starting + elQuery.value.verbose;
                 });
 
