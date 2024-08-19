@@ -11,7 +11,7 @@ string baseStr = "!c+c*a*(!b+f)+c*f*e+c*!a*!b*f*!d*e";
 //string baseStr = "!c+ca(!b+f)+cfe+c!a!bf!de";
 //string baseStr = "!a*!b*c+b*c+a*b*!c";
 BooleTree bTree = new(baseStr, Operator.OR);
-BooleTable table = new(bTree.getDistinctVars());
+BooleTable table = new(bTree);
 table.fill(bTree);
 BooleKarnaugh tKarnaugh = new(bTree.getDistinctVars(), table);
 table.show();

@@ -7,12 +7,13 @@ namespace BooleanSimplifier.Models
     {
         public List<BooleConjunction> lines { get; set; }
 
-        public BooleTable(List<string> vars)
+        public BooleTable(BooleTree boolTree)
         {
-            lines = Util.getAllPosibilities(vars);
+            lines = Util.getAllPosibilities(boolTree.getDistinctVars());
+            fill(boolTree);
         }
 
-        public void fill(BooleTree boolTree)
+        private void fill(BooleTree boolTree)
         {
             List<BooleConjunction> lines = boolTree.getFunctionAsSummatory();
             this.lines.ForEach(line =>
