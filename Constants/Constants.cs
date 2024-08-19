@@ -8,5 +8,8 @@
         public const char AND_OPERATOR = '*';
         public const string NEGATION_OPERATOR = "!";
         public const string NEGATION_CONJUNTION_OPERATOR = "¬";
+        public const string OUTPUT_NEGATION_OPERATOR = "!";
+        public const string OUTPUT_AND_OPERATOR = "&&";
+        public const string OUTPUT_OR_OPERATOR = "||";
     }
 }
