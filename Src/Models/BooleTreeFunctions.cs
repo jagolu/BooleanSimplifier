@@ -25,13 +25,13 @@ namespace BooleanSimplifier.Src.Models
             List<BooleConjunction> list = new List<BooleConjunction>();
             query.sumarize().ForEach(elQuery =>
             {
-                BooleConjunction singleElement = new BooleConjunction();
-                elQuery.Split(CONSTANTS.AND_OPERATOR).ToList()
+                var b = elQuery.Split(CONSTANTS.AND_OPERATOR).ToList()
                     .Where(el => el.Length > 0).ToList()
-                    .ForEach(singleEl =>
-                    {
-                        singleElement.elements.Add(new(singleEl));
-                    });
+                    .Select(singleEl =>
+                        new BooleanConjunctionElement(singleEl)
+                    ).ToList();
+
+                BooleConjunction singleElement = new BooleConjunction(b);
                 list.Add(singleElement);
             });
             return list;

@@ -1,4 +1,5 @@
 ﻿using BooleanSimplifier.Constants;
+using BooleanSimplifier.Src;
 using BooleanSimplifier.Src.Models;
 
 namespace BooleanSimplifier.Models
@@ -46,12 +47,11 @@ namespace BooleanSimplifier.Models
             get
             {
                 string ret = string.Empty;
-                this.getFunctionAsSummatory().Select((value, index) => new { value, index })
-                    .ToList().ForEach(elQuery =>
-                    {
-                        string starting = elQuery.index > 0 ? $" {CONSTANTS.OR_OPERATOR} " : string.Empty;
-                        ret += starting + elQuery.value.verbose;
-                    });
+                this.getFunctionAsSummatory().SelectIndex().ForEach(elQuery =>
+                {
+                    string starting = elQuery.index > 0 ? $" {CONSTANTS.OR_OPERATOR} " : string.Empty;
+                    ret += starting + elQuery.value.verbose;
+                });
 
                 return ret;
             }
