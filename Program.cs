@@ -3,19 +3,42 @@ using BooleanSimplifier.Constants;
 using BooleanSimplifier.Models;
 using BooleanSimplifier.Src.Models;
 
-//List<string> strings = new List<string>() { "a", "b", "c", "d", "e", "f"};
-//KarnaughTable t = new(strings);
+internal class Program
+{
+    private static void Main(string[] args)
+    {
+        while (true)
+        {
+            Console.WriteLine("Escribe la funcion: ");
+            string val = Console.ReadLine();
+            if (String.IsNullOrEmpty(val))
+            {
+                Console.WriteLine("Funcion no valida");
+                continue;
+            }
+            val = val.Trim()
+                .Replace(" ", "")
+                .Replace(CONSTANTS.OUTPUT_OR_OPERATOR, CONSTANTS.OR_OPERATOR.ToString())
+                .Replace(CONSTANTS.OUTPUT_AND_OPERATOR, CONSTANTS.AND_OPERATOR.ToString());
 
-//string baseStr = "(a*b*(c+!d)+e)*f+!c+a*!b";
-string baseStr = "!c+c*a*(!b+f)+c*f*e+c*!a*!b*f*!d*e";
-//string baseStr = "!c+ca(!b+f)+cfe+c!a!bf!de";
-//string baseStr = "!a*!b*c+b*c+a*b*!c";
-BooleTree bTree = new(baseStr, Operator.OR);
-BooleTable table = new(bTree);
-BooleKarnaugh tKarnaugh = new(bTree.getDistinctVars(), table);
-table.show();
-Console.WriteLine("<------------------------->");
-Console.WriteLine(bTree.verboseFunctionAsSummatory);
-Console.WriteLine("<------------------------->");
-Console.WriteLine(tKarnaugh.verbose);
 
+            if (String.IsNullOrEmpty(val))
+            {
+                Console.WriteLine("Funcion no valida");
+                continue;
+            }
+
+            BooleTree boolTree = new(val, Operator.OR);
+            BooleTable boolTable = new(boolTree);
+            BooleKarnaugh boolKarnaugh = new(boolTree.getDistinctVars(), boolTable);
+
+            Console.WriteLine("<------------------------->");
+            boolTable.show();
+            Console.WriteLine("<------------------------->");
+            Console.WriteLine(boolTree.verboseFunctionAsSummatory);
+            Console.WriteLine("<------------------------->");
+            Console.WriteLine(boolKarnaugh.verbose);
+            Console.WriteLine("<------------------------->");
+        }
+    }
+}
